@@ -1,2 +1,2 @@
 # 📒  POO-2021.2
-Repository with the activities of the Object-Oriented Programming subject
+Repositório com as atividades da disciplina de Programação Orientada a Objetos
