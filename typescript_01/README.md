@@ -25,5 +25,8 @@ c) Escreva também um script que declara uma variável do tipo da enum e que  te
 exibir(“a”, “b”); 
 exibir(“a”, “b”, “c”); 
 exibir(“a”, “b”, “c”, “d”);
-
+```
+### ⚠️ Como estou usando o ts-node-dev para executar os arquivos .ts, e o gerenciador yarn, para executar basta:
+```
+yarn ts-node-dev (nome do arquivo)
 ```
