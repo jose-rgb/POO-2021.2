@@ -11,7 +11,7 @@ class Hora {
     private minutos: number;
     private segundos: number;
     
-    constructor(hora, minutos, segundos) {
+    constructor(hora:number, minutos: number, segundos: number) {
         this.hora = hora;
         this.minutos = minutos;
         this.segundos = segundos;
@@ -30,13 +30,12 @@ class Hora {
     }
 
     horario() {
-        return `${this.hora}:${this.minutos}:${this.segundos}`
+        return `hora ${this.hora}:${this.minutos}:${this.segundos}`
     }
 
 }
 
-/*testes
-const operacao = new Calculadora(3,2);
-console.log(operacao.somar());
-console.log(operacao.subtrair());
-*/
+//testes
+const hora = new Hora(19, 30, 44);
+console.log(hora.horario());
+
