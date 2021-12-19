@@ -20,6 +20,16 @@ export class Estoque {
         console.log(response)
     }
 
+    excluir(id: number) {
+        for (var i = 0; i < this.produtos.length; i++) {
+            if (this.produtos[i].getId() == id) {
+                var index = this.produtos.indexOf(this.produtos[i]);
+                this.produtos.splice(index, 1);
+            } 
+        }
+        
+    }
+
     consultarId(produto: ProdutoPerecivel){
         var consulta:  number = 0
 
@@ -73,3 +83,7 @@ estoque.inserir(produto3);
 
 //consultando produtos pereciveis do estoque com o método
 console.log(estoque.getProdutosPereciveisVencidos());
+
+//excluindo produto com o método
+estoque.excluir(1)
+console.log(estoque.getProdutos())
