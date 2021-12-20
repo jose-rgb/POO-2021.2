@@ -1,4 +1,5 @@
 import { Conta } from "./Conta";
+import { Poupanca } from "./Poupanca";
 
 export class Banco {
     private contas: Conta[] = [];
@@ -7,8 +8,8 @@ export class Banco {
         this.contas.push(conta)
     }
 
-    consultar(numero: string) {
-        let contaConsultada: Conta;
+    consultar(numero: string): Conta | Poupanca {
+        let contaConsultada: Poupanca | Conta;
 
         for (let conta of this.contas) {
             if (conta.numero == numero) {
@@ -83,20 +84,50 @@ export class Banco {
     getContas() {
         return this.contas;
     }
+
+    renderJuros(numero: string) {
+        let contaConsultada: Conta | Poupanca = this.consultar(numero);
+        let contaExiste = false;
+
+        //condição para atribuir o boolean 
+        if(contaConsultada != null) {
+            contaExiste = true;
+        }
+
+        if (contaExiste != false) {
+
+            //condição  para verificar se o objeto e do tipo: Poupanca
+            if(contaConsultada instanceof Poupanca == true) {
+                //instanciando objeto provisorio
+                let contaProvi: Poupanca = new Poupanca(contaConsultada.numero, contaConsultada.saldo)
+                //excluindo conta
+                this.excluir(contaConsultada.numero)
+                //aplicando metodo
+                contaProvi.renderJuros();
+                //inserindo novo objeto com os juros no array de conta
+                this.inserirConta(contaProvi);
+            }
+        }
+    }
 }
 
 
 //testes
 //instanciando objetos
-let conta1: Conta = new Conta("1", 100)
-let conta2: Conta = new Conta("2", 150)
-let conta3: Conta = new Conta("3", 180)
+let conta1: Conta = new Conta("1", 100);
+let conta2: Conta = new Conta("2", 150);
+let conta3: Conta = new Conta("3", 180);
+let conta4: Poupanca = new Poupanca("4", 2000);
+let conta5: Poupanca = new Poupanca("5", 2500);
 let banco: Banco = new Banco();
+
 
 //inserindo contas no banco
 banco.inserirConta(conta1);
 banco.inserirConta(conta2);
 banco.inserirConta(conta3);
+banco.inserirConta(conta4);
+banco.inserirConta(conta5);
 
 //testando metodo alterar
 banco.alterar(new Conta("1", 250))
@@ -113,5 +144,10 @@ banco.depositar("2", 51)
 //testando metodo transferir
 banco.transferir("1", "2", 2)
 
+//testanto o metodo para render juros 
+// nas contas do tipo poupanca
+banco.renderJuros("5")
+
 //verificando as contas no banco 
 console.log(banco.getContas())
+
