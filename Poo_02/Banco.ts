@@ -147,6 +147,8 @@ banco.transferir("1", "2", 2)
 //testanto o metodo para render juros 
 // nas contas do tipo poupanca
 banco.renderJuros("5")
+//testando uma conta que não é poupanca
+banco.renderJuros("2")
 
 //verificando as contas no banco 
 console.log(banco.getContas())
